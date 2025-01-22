@@ -74,14 +74,21 @@ export const testimonialsData = [
     name: "Alex Johnson",
     role: "Digital Artist",
     stars: 5,
-    text: `This platform has revolutionized the way I create artwork. The text-to-image feature is intuitive and incredibly efficient.`,
+    text: `ImaginAI has truly revolutionized the way I approach my projects. The creativity and efficiency it offers are unmatched!`,
   },
   {
     image: profile_img_2,
     name: "Emily Carter",
     role: "Content Creator",
+    stars: 4,
+    text: `From ideation to execution, ImaginAI has been an invaluable tool in bringing my vision to life. Highly recommend it!`,
+  },
+  {
+    image: profile_img_1,
+    name: "Alex Johnson",
+    role: "Social Media Influencer",
     stars: 5,
-    text: `A brilliant tool! I’ve used it to create unique visuals for my social media posts, and the results are always impressive.`,
+    text: `Thanks to ImaginAI, my content quality and productivity have reached new heights. I couldn't be happier!`,
   },
 ];
 
