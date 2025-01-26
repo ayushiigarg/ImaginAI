@@ -27,11 +27,15 @@ const Testimonials = () => {
               </h2>
               <p className="text-gray-500 mb-4">{testimonial.role}</p>
               <div className="flex mb-4">
-                {Array(testimonial.stars)
-                  .fill()
-                  .map((index) => (
-                    <img key={index} src={assets.rating_star} alt="" />
-                  ))}
+                {Array.from({ length: testimonial.stars }).map(
+                  (_, starIndex) => (
+                    <img
+                      key={starIndex}
+                      src={assets.rating_star}
+                      alt={`star-${starIndex}`}
+                    />
+                  )
+                )}
               </div>
               <p className="text-center text-sm text-gray-600">
                 {testimonial.text}
