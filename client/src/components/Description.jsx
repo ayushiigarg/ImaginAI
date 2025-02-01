@@ -1,17 +1,16 @@
 import React from "react";
 import { assets } from "../assets/assets";
-
-const Button = ({ children }) => {
-  return (
-    <button className="px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 ease-in-out transform hover:scale-105">
-      {children}
-    </button>
-  );
-};
+import { motion } from "motion/react";
 
 const Description = () => {
   return (
-    <div className="flex flex-col items-center justify-center my-24 p-6 md:px-28">
+    <motion.div
+      initial={{ opacity: 0.2, y: 100 }}
+      transition={{ duration: 1 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="flex flex-col items-center justify-center my-24 p-6 md:px-28"
+    >
       <h1 className="text-3xl sm:text-4xl font-semibold mb-2">
         Create AI Images
       </h1>
@@ -48,7 +47,7 @@ const Description = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
