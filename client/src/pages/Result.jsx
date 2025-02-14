@@ -1,13 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { motion } from "motion/react";
+import { AppContext } from "../context/AppContext";
 
 const Result = () => {
   const [image, setImage] = useState(assets.img4);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
-  const onSubmitHandler = async (e) => {};
+  const { generateImage } = useContext(AppContext);
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (input) {
+      const imageUrl = await generateImage(input);
+      if (imageUrl) {
+        setImage(imageUrl);
+        setIsImageLoaded(true);
+        console.log("Image Loaded:", imageUrl);
+      } else {
+        console.error("No Image URL returned");
+      }
+    }
+    setLoading(false);
+  };
+
   return (
     <motion.form
       initial={{ opacity: 0.2, y: 100 }}
