@@ -37,7 +37,10 @@ const Navbar = () => {
               <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-12">
                 <ul className="list-none m-0 p-2 bg-white rounded-md border text-sm">
                   <li
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
                     className="py-1 px-2 cursor-pointer pr-10"
                   >
                     Logout
