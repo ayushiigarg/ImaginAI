@@ -7,8 +7,6 @@ const connectDb = require("./config/db");
 const router = require("./routes/userRoutes");
 const imageRouter = require("./routes/imageRoutes");
 
-dotenv.config();
-
 const PORT = process.env.PORT || 4000;
 
 const app = express();
