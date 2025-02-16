@@ -5,6 +5,8 @@ const {
   userCredits,
   paymentRazorpay,
   verifyRazorpay,
+  forgotPassword,
+  resetPassword,
 } = require("../controllers/userController");
 const auth = require("../middlewares/auth");
 
@@ -15,5 +17,7 @@ router.post("/login", loginUser);
 router.get("/credits", auth, userCredits);
 router.post("/pay-razor", auth, paymentRazorpay);
 router.post("/verify-razor", verifyRazorpay);
+router.post("/forgot-password", forgotPassword);
+router.post("/reset-password", resetPassword);
 
 module.exports = router;
