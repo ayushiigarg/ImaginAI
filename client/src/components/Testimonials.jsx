@@ -17,7 +17,7 @@ const Testimonials = () => {
       <p className="text-gray-500 mb-12">
         Hear what our customers have to say about ImaginAI
       </p>
-      <div className="flex flex-wrap gap-6">
+      <div className="flex flex-wrap justify-center gap-6 max-w-5xl">
         {testimonialsData.map((testimonial, index) => (
           <div
             key={index}
