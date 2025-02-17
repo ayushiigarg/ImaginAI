@@ -50,7 +50,7 @@ A full-stack AI SaaS application that allows users to generate AI-powered images
      EMAIL_PASS=<your_email_password>
      FRONTEND_URL=<your_frontend_url>
      ```
- - Create a `.env` file in the `client` directory and configure the following:  
+  - Create a `.env` file in the `client` directory and configure the following:  
      ```env
      VITE_RAZORPAY_KEY_ID=<your_razorpay_key_id>
      VITE_BACKEND_URL=<your_backend_url>
