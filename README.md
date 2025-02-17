@@ -66,9 +66,3 @@ A full-stack AI SaaS application that allows users to generate AI-powered images
    npm run dev
    ```
 
-
-## 📄 License  
-MIT License  
-```
-
-This **README.md** provides a clear, structured overview of your project. Let me know if you need any tweaks! 🚀
