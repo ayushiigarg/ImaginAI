@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
   const [state, setState] = useState("Login");
@@ -16,11 +17,14 @@ const Login = () => {
     showResetPassword,
     setShowResetPassword,
   } = useContext(AppContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [resetEmail, setResetEmail] = useState("");
+  const [loading, setLoading] = useState(false); // added loading state
 
   useEffect(() => {
     setName("");
@@ -34,6 +38,7 @@ const Login = () => {
 
   const handleForgotPassword = async (e) => {
     e.preventDefault();
+    setLoading(true); // start loading
     try {
       const { data } = await axios.post(
         `${backendUrl}/api/user/forgot-password`,
@@ -43,6 +48,8 @@ const Login = () => {
       setShowResetPassword(false);
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong!");
+    } finally {
+      setLoading(false); // stop loading
     }
   };
 
@@ -59,6 +66,7 @@ const Login = () => {
           setUser(data.user);
           localStorage.setItem("token", data.token);
           setShowLogin(false);
+          navigate("/"); // Redirect to home
         } else {
           toast.error(data.message);
         }
@@ -73,6 +81,7 @@ const Login = () => {
           setUser(data.user);
           localStorage.setItem("token", data.token);
           setShowLogin(false);
+          navigate("/"); // Redirect to home
         } else {
           toast.error(data.message);
         }
@@ -127,9 +136,36 @@ const Login = () => {
 
             <button
               type="submit"
+              disabled={loading}
               className="bg-blue-600 w-full text-white py-2 rounded-full mt-4"
             >
-              Send Reset Link
+              {loading ? (
+                <span className="flex items-center justify-center">
+                  <svg
+                    className="animate-spin mr-2 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8H4z"
+                    ></path>
+                  </svg>
+                  Sending Link...
+                </span>
+              ) : (
+                "Send Reset Link"
+              )}
             </button>
 
             <p
@@ -221,7 +257,9 @@ const Login = () => {
         )}
 
         <img
-          onClick={() => setShowLogin(false)}
+          onClick={() =>
+            location.pathname === "/login" ? navigate("/") : setShowLogin(false)
+          }
           src={assets.cross_icon}
           alt="Close"
           className="absolute top-5 right-5 cursor-pointer"
