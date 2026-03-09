@@ -12,8 +12,16 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 
 connectDb();
+
+app.use(
+  cors({
+    origin: ["https://imagin-ai-delta.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+  }),
+);
+
 app.use(express.json());
-app.use(cors());
 
 app.use("/api/user", router);
 app.use("/api/image", imageRouter);
