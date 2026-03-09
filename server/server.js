@@ -7,10 +7,14 @@ const connectDb = require("./config/db");
 const router = require("./routes/userRoutes");
 const imageRouter = require("./routes/imageRoutes");
 
+// In a serverless environment we don't listen on a port –
+// Vercel will call the exported handler for each request.
+// keep the PORT constant for local development if needed
 const PORT = process.env.PORT || 4000;
 
 const app = express();
 
+// establish the database connection once
 connectDb();
 
 app.use(
@@ -28,4 +32,5 @@ app.use("/api/image", imageRouter);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// export the Express app so Vercel can use it as a function
+module.exports = app;
